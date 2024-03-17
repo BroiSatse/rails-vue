@@ -1,28 +1,25 @@
-// To see this message, add the following to the `<head>` section in your
-// views/layouts/application.html.erb
-//
-//    <%= vite_client_tag %>
-//    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import { createApp } from "vue"
+import App from "../components/App.vue"
 
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
+// Vuetify
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import { aliases, md } from 'vuetify/iconsets/md'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+const vuetify = createVuetify({
+  theme: {
+    defaultTheme: 'dark'
+  },
+  icons: {
+    defaultSet: 'md',
+    aliases,
+    sets: { md }
+  },
+  components,
+  directives
+})
 
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
-
-// Example: Import a stylesheet in app/frontend/index.css
-// import '~/index.css'
+createApp(App).use(vuetify).mount('#app')
