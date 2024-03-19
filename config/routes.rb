@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  get '*', to: 'application#show'
+  scope path: 'api' do
+    namespace :auth do
+      resource :session, only: :show, controller: 'controllers/session'
+    end
+  end
+
+  get '*path', to: 'application#show'
   root 'application#show'
 end
