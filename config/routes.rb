@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       end
     end
 
-    get '*path', to: 'application#not_found'
+    get '*path', to: 'application#not_found', export: false
   end
 
   get '*path', to: 'application#show'

@@ -5,6 +5,11 @@ export const currentUser = ref(null)
 
 export async function refreshCurrentUser () {
   const data = await api.authControllersSessions.show()
-  console.log(data)
-  currentUser.value = data
+  currentUser.value = data.currentUser
+  console.log('Current user refresh', currentUser.value)
+}
+
+export async function signOut () {
+  await api.authControllersSessions.destroy()
+  currentUser.value = null
 }

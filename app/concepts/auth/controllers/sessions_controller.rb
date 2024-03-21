@@ -2,6 +2,7 @@
 
 class Auth::Controllers::SessionsController < Devise::SessionsController
   include Auth::Controller
+  include ::Controllers::Csrf
 
   wrap_parameters :auth
   respond_to :json

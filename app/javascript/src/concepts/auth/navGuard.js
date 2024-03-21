@@ -1,13 +1,20 @@
 import { watch } from 'vue'
-import { useRouter } from "vue-router";
+import router from "~/config/router";
+import { names as routes } from "~/config/routes";
 import { names as routeNames } from '~/config/routes'
 import { currentUser } from './currentUser'
 
 let interruptedNavigation = null
-const router = useRouter()
 
-watch(currentUser, (current, old) => {
-  console.log(current, old)
+watch(currentUser, (user, previous) => {
+  if (!previous && user) {
+    router.push(interruptedNavigation ? { path: interruptedNavigation } : { name: routes.root })
+    interruptedNavigation = null
+  }
+
+  if (previous && !user) {
+    router.push({ name: routes.auth.signIn })
+  }
 })
 
 export function navGuard (to, from) {
@@ -20,10 +27,8 @@ export function navGuard (to, from) {
   if (auth) {
     if (currentUser.value) { return true }
     interruptedNavigation = to.fullPath
-    console.log(interruptedNavigation)
     return { name: routeNames.auth.signIn }
   } else {
-    console.log('Non-auth!', currentUser.value)
     return !currentUser.value || { name: routeNames.root }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <Layout title="Sign in">
     <v-form @submit.prevent="submit">
-      <v-text-field label='Email' v-model="email" :rules="emailRules" class="text-right"></v-text-field>
+      <v-text-field label='Email' v-model="email" :rules="emailRules" class="text-right" validate-on="blur"></v-text-field>
       <v-text-field label='Password' type='password' v-model="password" :rules="passwordRules"></v-text-field>
       <v-btn block color="indigo-darken-3" size="x-large" class="mt-4" type="submit">Sign in</v-btn>
     </v-form>
