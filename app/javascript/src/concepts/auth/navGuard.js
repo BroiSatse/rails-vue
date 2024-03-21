@@ -1,5 +1,14 @@
+import { watch } from 'vue'
+import { useRouter } from "vue-router";
 import { names as routeNames } from '~/config/routes'
-import useCurrentUser from './composables/currentUser.js'
+import { currentUser } from './currentUser'
+
+let interruptedNavigation = null
+const router = useRouter()
+
+watch(currentUser, (current, old) => {
+  console.log(current, old)
+})
 
 export function navGuard (to, from) {
   let auth = { auth: true , ...to.meta }.auth
@@ -8,11 +17,13 @@ export function navGuard (to, from) {
     return true
   }
 
-  const user = useCurrentUser()
-
   if (auth) {
-    return !!user.value || { name: routeNames.auth.signIn }
+    if (currentUser.value) { return true }
+    interruptedNavigation = to.fullPath
+    console.log(interruptedNavigation)
+    return { name: routeNames.auth.signIn }
   } else {
-    return !user.value || { name: routeNames.root }
+    console.log('Non-auth!', currentUser.value)
+    return !currentUser.value || { name: routeNames.root }
   }
 }

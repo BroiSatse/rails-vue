@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="p-4">
     <v-app-bar>
       <template v-slot:prepend>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>

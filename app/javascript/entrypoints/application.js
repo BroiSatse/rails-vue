@@ -1,3 +1,3 @@
-import app from '/src/config'
+import createApp from '/src/config'
 
-app.mount('#app')
+createApp.then(app => app.mount('#app'))

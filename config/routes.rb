@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'pages/home'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  scope path: 'api', format: :json, export: true do
+    devise_for :auth, class_name: 'Auth::Models::Auth', only: []
 
-  scope path: 'api' do
     namespace :auth do
-      resource :session, only: :show, controller: 'controllers/session'
+      as :auth do
+        resource :session, controller: 'controllers/sessions', only: %i[create destroy show], path: ''
+      end
     end
+
+    get '*path', to: 'application#not_found'
   end
 
   get '*path', to: 'application#show'

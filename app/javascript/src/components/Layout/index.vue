@@ -1,8 +1,9 @@
 <template>
-  <Layout><slot></slot></Layout>
+  <component :is="layout"><slot></slot></component>
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useRoute } from "vue-router";
   import Blank from './Blank.vue'
   import Full from './Full.vue'
@@ -13,5 +14,6 @@
   }
 
   const route = useRoute()
-  const Layout = layouts[route.meta.layout || 'default']
+  const layout = computed(() => layouts[route.meta.layout || 'default'])
+
 </script>

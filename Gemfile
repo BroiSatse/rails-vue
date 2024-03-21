@@ -9,12 +9,15 @@ gem 'rails', '~> 7.1.3'
 
 gem 'puma', '>= 5.0'
 
+gem 'devise'
+
 gem 'vite_rails'
 gem 'vite_ruby'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'tzinfo-data', platforms: %i[windows jruby]
+gem 'pry-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -24,4 +27,10 @@ group :development do
   gem 'rubocop-rails'
   gem 'web-console'
   gem 'dotenv-rails'
+  gem 'letter_opener'
+end
+
+group :test, :development do
+  gem 'byebug'
+  gem 'js_from_routes'
 end
