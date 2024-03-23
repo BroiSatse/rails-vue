@@ -1,6 +1,6 @@
 <template xmlns="http://www.w3.org/1999/html">
   <v-app class="p-4">
-    <v-app-bar>
+    <v-app-bar elevation="3">
       <template v-slot:prepend>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-lg-none"></v-app-bar-nav-icon>
       </template>
@@ -14,7 +14,7 @@
 
       <template v-slot:append>
         <v-list>
-          <v-list-item title="My account" @click="signOut" prepend-icon="manage_accounts"></v-list-item>
+          <v-list-item title="My account" :to="{ name: routes.users.account }" prepend-icon="manage_accounts"></v-list-item>
           <v-list-item title="Sign out" @click="signOut" prepend-icon="logout"></v-list-item>
         </v-list>
       </template>

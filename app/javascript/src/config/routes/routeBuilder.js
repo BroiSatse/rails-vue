@@ -1,4 +1,4 @@
-import { RouterView } from 'vue-router'
+import NestedRouteView from '~/components/NestedRouteView.vue'
 
 export default class RouteBuilder {
   constructor() {
@@ -8,7 +8,7 @@ export default class RouteBuilder {
 
   addConcept(name, { path, routes, names, meta }) {
     path = path || `/${name}`
-    const route = { path, children: routes, component: RouterView }
+    const route = { path, children: routes, component: NestedRouteView }
     if (meta) {
       route.meta = meta
     }

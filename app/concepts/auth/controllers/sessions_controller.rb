@@ -8,18 +8,18 @@ class Auth::Controllers::SessionsController < Devise::SessionsController
   respond_to :json
 
   def show
-    render json: { current_user: }
+    render json: { current_user: current_user_json }
   end
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  private
 
-  # protected
+  def unverified_email
+    Emails::Verify.pending_verification_for(owner: current_user, target: :email)
+  end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def current_user_json
+    return unless current_user
+
+    current_user.as_json.merge(unverified_email:)
+  end
 end

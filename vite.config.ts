@@ -16,9 +16,7 @@ const config = defineConfig({
     FullReload(['app/views/**/*'], { delay: 200 }),
     vue(),
     vuetify({styles: { configFile: 'src/styles/settings.scss' }})
-
   ],
 })
-
 
 export default config

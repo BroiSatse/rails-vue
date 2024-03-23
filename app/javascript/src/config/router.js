@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import { routes } from './routes'
 import { navGuard as authGuard } from "~/concepts/auth";
+import { navGuard as userGuard } from "~/concepts/users";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -8,5 +9,6 @@ const router = createRouter({
 })
 
 router.beforeEach(authGuard)
+router.beforeEach(userGuard)
 
 export default router;

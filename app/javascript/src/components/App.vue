@@ -1,6 +1,12 @@
 <template>
   <Layout>
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <v-fade-transition>
+        <div class="page-view">
+          <component :is="Component" :key="$router.fullPath"/>
+        </div>
+      </v-fade-transition>
+    </router-view>
   </Layout>
 </template>
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if defined? JsFromRoutes
   JsFromRoutes.config do |config|
     config.output_folder = Rails.root.join('app', 'javascript', 'src', 'api')

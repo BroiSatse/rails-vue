@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Auth::Controller
   def authenticate_user!
     authenticate_auth!

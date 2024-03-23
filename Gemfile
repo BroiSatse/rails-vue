@@ -16,21 +16,24 @@ gem 'vite_ruby'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
-gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'pry-rails'
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'rubocop-rails'
-  gem 'web-console'
-  gem 'dotenv-rails'
   gem 'letter_opener'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'web-console'
 end
 
 group :test, :development do
   gem 'byebug'
+  gem 'dotenv-rails'
+  gem 'ffaker'
   gem 'js_from_routes'
+  gem 'rspec-rails'
 end

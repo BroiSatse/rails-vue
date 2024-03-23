@@ -1,11 +1,49 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
 
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Lint/AmbiguousBlockAssociation:
+  AllowedMethods:
+    - change
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/*.rb'
+  AllowedMethods:
+    - context
+    - describe
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+
 Rails/FilePath:
   EnforcedStyle: arguments
 
+Rails/SkipsModelValidations:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false # This cop raises a lot of false positives
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+
+
 

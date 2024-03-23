@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_21_110137) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_24_094604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_110137) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_auths_on_email", unique: true
     t.index ["reset_password_token"], name: "index_auths_on_reset_password_token", unique: true
+  end
+
+  create_table "email_verifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "owner_type", null: false
+    t.string "owner_id", null: false
+    t.string "email", null: false
+    t.string "target", null: false
+    t.string "code_digest", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_email_verifications_on_owner"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

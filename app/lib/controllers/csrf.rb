@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Controllers::Csrf
   extend ActiveSupport::Concern
 
